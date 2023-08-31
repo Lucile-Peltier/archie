@@ -1,22 +1,32 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
-import { Button, Image, StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 
+import Booking from '@components/bookings/Booking';
+import HeaderBar from '@components/common/HeaderBar';
 import BottomBar from '@components/navigation/BottomBar';
 import ColorConstants from '@constants/ColorConstants';
-import navigationConstants from '@navigators/navigationConstants';
-import { navigate } from '@navigators/navigationServices';
+
+import { homeData } from '../data/homeData';
 
 const HomeScreen = () => {
+  const ref = useRef<FlatList>(null);
+
+  const renderSearator = () => {
+    return <View style={styles.separator} />;
+  };
+
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.image}
-        source={{
-          uri: 'https://avatars.githubusercontent.com/u/835963?s=200&v=4',
-        }}
+      <HeaderBar />
+      <FlatList
+        ref={ref}
+        data={homeData}
+        ItemSeparatorComponent={renderSearator}
+        keyExtractor={(_, index) => index.toString()}
+        renderItem={({ item }) => <Booking item={item} />}
+        contentContainerStyle={{ paddingTop: 16 }}
       />
-      <Button title="Go to Details" onPress={() => navigate(navigationConstants.DETAILS)} />
       <BottomBar />
     </View>
   );
@@ -27,12 +37,12 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingHorizontal: 16,
     backgroundColor: ColorConstants.WHITE,
   },
-  image: {
-    width: '100%',
-    height: '50%',
+  separator: {
+    borderBottomColor: ColorConstants.BLACK[6],
+    borderBottomWidth: 1,
+    marginBottom: 16,
   },
 });
