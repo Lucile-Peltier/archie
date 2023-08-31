@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Button, Image, StyleSheet, View } from 'react-native';
 
+import BottomBar from '@components/navigation/BottomBar';
+import ColorConstants from '@constants/ColorConstants';
 import navigationConstants from '@navigators/navigationConstants';
 import { navigate } from '@navigators/navigationServices';
 
@@ -15,6 +17,7 @@ const HomeScreen = () => {
         }}
       />
       <Button title="Go to Details" onPress={() => navigate(navigationConstants.DETAILS)} />
+      <BottomBar />
     </View>
   );
 };
@@ -26,6 +29,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: ColorConstants.WHITE,
   },
   image: {
     width: '100%',
