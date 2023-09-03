@@ -1,19 +1,26 @@
-/* eslint-disable no-empty-pattern */
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+
+import { Messaging } from '@models/Messaging';
+
+import { messagingData } from '../../data/messagingData';
 
 interface UserInitialState {
-  username: string;
+  messages: Messaging[];
 }
 export const userInitialState: UserInitialState = {
-  username: '',
+  messages: messagingData,
 };
 
 const userSlice = createSlice({
   name: 'user',
   initialState: userInitialState,
-  reducers: {},
+  reducers: {
+    updateMessage: (state, action: PayloadAction<Messaging>) => {
+      state.messages.push(action.payload);
+    },
+  },
 });
 
-export const {} = userSlice.actions;
+export const { updateMessage } = userSlice.actions;
 
 export default userSlice;

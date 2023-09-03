@@ -6,14 +6,15 @@ import { Image, ImageSourcePropType, StyleSheet, View } from 'react-native';
 import ColorConstants from '@constants/ColorConstants';
 
 interface Props {
-  icon: ImageSourcePropType;
+  image: ImageSourcePropType;
   type: ArchieButtonType;
+  isColor?: boolean;
 }
 
-const ArchieButton = ({ icon, type }: Props) => {
+const ArchieButton = ({ image, type, isColor }: Props) => {
   return (
-    <View style={[styles.container, styles[type]]}>
-      <Image source={icon} style={imageStyles[type]} resizeMode="contain" />
+    <View style={[styles.container, isColor && { backgroundColor: ColorConstants.HEADER }, styles[type]]}>
+      <Image source={image} style={imageStyles[type]} resizeMode="contain" />
     </View>
   );
 };
@@ -34,6 +35,12 @@ const styles = StyleSheet.create({
   secondary: {
     borderRadius: 8,
   },
+  header: {
+    borderRadius: 10.7,
+  },
+  user: {
+    borderRadius: 12,
+  },
 });
 
 const imageStyles = StyleSheet.create({
@@ -49,9 +56,19 @@ const imageStyles = StyleSheet.create({
     marginHorizontal: 16,
     marginVertical: 10.5,
   },
+  header: {
+    width: 40,
+    height: 40,
+  },
+  user: {
+    width: 40,
+    height: 40,
+  },
 });
 
 export enum ArchieButtonType {
   PRIMARY = 'primary',
   SECONDARY = 'secondary',
+  HEADER = 'header',
+  USER = 'user',
 }

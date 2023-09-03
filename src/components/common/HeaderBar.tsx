@@ -4,21 +4,24 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { header, write } from '@assets/common';
 import ColorConstants from '@constants/ColorConstants';
+import ModalsEnum from '@enums/Modals';
+import useAppDispatch from '@hooks/useAppDispatch';
+import { showModal } from '@redux/reducers/modals';
 
 import ArchieButton, { ArchieButtonType } from './ArchieButton';
-import ArchieImage, { ArchieImageType } from './ArchieImage';
 
 const HeaderBar = () => {
   const headerBarHeight = 56;
+  const dispatch = useAppDispatch();
 
   return (
     <View style={[styles.container, { height: headerBarHeight }]}>
       <View style={styles.left}>
-        <ArchieImage image={header} type={ArchieImageType.HEADER} isColor={true} />
+        <ArchieButton image={header} type={ArchieButtonType.HEADER} isColor={true} />
         <Text style={styles.title}>Who is coming</Text>
       </View>
-      <TouchableOpacity onPress={() => null} style={styles.button}>
-        <ArchieButton icon={write} type={ArchieButtonType.PRIMARY} />
+      <TouchableOpacity onPress={() => dispatch(showModal(ModalsEnum.messagingModal))} style={styles.button}>
+        <ArchieButton image={write} type={ArchieButtonType.PRIMARY} />
       </TouchableOpacity>
     </View>
   );

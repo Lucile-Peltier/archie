@@ -5,6 +5,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import { generalMiddleware } from './middlewares/general';
 import { userMiddleware } from './middlewares/user';
 import generalSlice from './reducers/general';
+import { modalSlice } from './reducers/modals';
 import userSlice from './reducers/user';
 import reactotron from '../../ReactotronConfig';
 
@@ -24,6 +25,7 @@ const userPersistConfig = {
 const rootReducer = combineReducers({
   [generalSlice.name]: persistReducer(generalPersistConfig, generalSlice.reducer),
   [userSlice.name]: persistReducer(userPersistConfig, userSlice.reducer),
+  [modalSlice.name]: modalSlice.reducer,
 });
 const store = configureStore({
   reducer: rootReducer,

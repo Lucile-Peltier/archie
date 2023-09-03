@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import RoomBookings from '@components/bookings/RoomBookings';
-import ArchieImage, { ArchieImageType } from '@components/common/ArchieImage';
+import ArchieButton, { ArchieButtonType } from '@components/common/ArchieButton';
 import ColorConstants from '@constants/ColorConstants';
 import { UserBooking } from '@models/UserBooking';
 
@@ -15,7 +15,7 @@ const Booking = ({ item }: Props) => {
   return (
     <View style={{ paddingBottom: 20 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', paddingBottom: 11 }}>
-        <ArchieImage image={item.picture} type={ArchieImageType.PRIMARY} />
+        <ArchieButton image={item.picture} type={ArchieButtonType.USER} />
         <View style={{ paddingLeft: 8 }}>
           <Text style={styles.name}>{item.name}</Text>
           <Text style={styles.description}>{item.description}</Text>

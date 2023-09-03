@@ -27,7 +27,7 @@ const RoomBookings = ({ bookings }: Props) => {
           </View>
         </View>
         <View style={{ paddingEnd: 14 }}>
-          <ArchieButton icon={location} type={ArchieButtonType.SECONDARY} />
+          <ArchieButton image={location} type={ArchieButtonType.SECONDARY} />
         </View>
       </View>
     );

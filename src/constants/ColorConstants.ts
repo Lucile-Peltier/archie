@@ -8,6 +8,7 @@ export default {
     BLACK: '#000000',
     3: '#676767',
     4: '#A2A8BB',
+    5: '#CED2E0',
     6: '#F4F6F9',
   },
   WHITE: '#FFFFFF',
